@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a5c42">
+<title>مذكر - Muthakkir</title>
+<link rel="manifest" href="manifest.json">
+<meta name="description" content="تطبيق إسلامي شامل: أذكار، مواقيت صلاة، مصحف، قبلة، تقويم هجري وزكاة، مسبحة إلكترونية">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="مذكر">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=17">
+</head>
+<body class="home">
+<header>
+<div class="hb"><h1 id="hT">مذكر</h1><small id="hS">وَذَكِّرْ فَإِنَّ الذِّكْرَىٰ تَنْفَعُ الْمُؤْمِنِينَ</small></div>
+<div class="tools"><button class="ib" id="fm" aria-label="تصغير الخط">أ-</button><button class="ib" id="fp" aria-label="تكبير الخط">أ+</button><button class="ib" id="th" aria-label="تبديل الوضع" data-ic="moon"></button><button class="ib" id="gr" aria-label="الإعدادات" data-ic="sliders"></button></div>
+</header>
+<main id="v1" class="wrap" hidden>
+<input class="s" id="q" type="search" placeholder="ابحث في الأذكار…"><select id="cf" aria-label="نطاق البحث"></select>
+<div class="tabs" id="tabs"></div>
+<div class="pg"><i id="pb"></i></div>
+<div class="pt" id="pt"></div>
+<div id="list"></div>
+</main>
+<main id="v2" class="wrap" hidden>
+<div class="c tsd"><select id="dz" aria-label="اختر الذكر"></select><p class="dt" id="dt"></p><div class="pt" id="sp"></div></div>
+<button class="big" id="big" aria-label="عدّ تسبيحة"><span>0</span></button>
+<div class="ctl">
+<select id="gl" aria-label="الهدف"><option value="0">هدف: تسبيح حر</option><option value="33">هدف: 33</option><option value="100">هدف: 100</option><option value="1000">هدف: 1000</option></select>
+<button class="sh" id="sn"></button>
+<button class="sh" id="rs">إعادة ضبط</button>
+</div>
+<div class="tot"><span>إجمالي تسبيحاتك</span><b id="tt">0</b></div>
+</main>
+<main id="v3" class="wrap" hidden>
+<div class="c sm">
+<div class="smr"><div class="ringp" id="sb"><b id="sx2">0%</b></div><div><div class="zt">إنجازك اليوم</div><div class="pt" id="sx"></div></div></div>
+<div class="tiles3">
+<div class="tl3"><span class="ico" data-ic="clock"></span><b id="s4">0 / 5</b><small>صلوات اليوم</small></div>
+<div class="tl3"><span class="ico" data-ic="dot"></span><b id="s1">0</b><small>تسبيحات اليوم</small></div>
+<div class="tl3"><span class="ico" data-ic="beads"></span><b id="s2">0</b><small>أذكار مكتملة</small></div>
+</div>
+<div class="tot"><span>إجمالي تسبيحاتك</span><b id="s3">0</b></div>
+<div class="cats" id="sc"></div>
+</div>
+<div id="kh"></div>
+</main>
+<main id="v4" class="wrap" hidden>
+<div class="tloc"><span class="ico" data-ic="pin"></span><div class="tlt"><b id="locName">لم يُحدَّد الموقع بعد</b><small id="tHj"></small></div><button class="ib2" id="locBtn" aria-label="تحديث الموقع" data-ic="refresh"></button></div>
+<div class="tnext" id="npCard" data-sky="noon"><div class="tnl"><small>الصلاة القادمة</small><div class="nn" id="npName">—</div></div><div class="tnr"><div class="nc" id="npCd">--:--:--</div><div class="rchip" id="npAt"></div></div></div>
+<div class="prl" id="ptl"></div>
+<div class="c tm" id="tmCard">
+<div class="tmh"><span class="ico" data-ic="moon"></span><div><small>الفجر القادم والغد</small><div class="tmf" id="tmFajr">—</div></div></div>
+<div class="pt" id="tmIn"></div>
+<div class="pt" id="tmDate"></div>
+<div class="row" style="gap:8px;margin-top:10px"><label for="tmOff" style="flex:1">المنبه قبل الفجر بـ</label><select id="tmOff" style="flex:1"><option value="0">لحظة الأذان</option><option value="10">10 دقائق</option><option value="20">20 دقيقة</option><option value="30">30 دقيقة</option><option value="45">45 دقيقة</option><option value="60">ساعة</option></select></div>
+<button class="sh" id="tmIcs" style="width:100%;margin-top:8px"><span class="ei" data-ic="cal"></span> تذكير بالتقويم (فجر الغد)</button>
+<div class="pt" id="tmFast" style="color:var(--au);font-weight:700"></div>
+<details><summary>كل مواقيت الغد</summary><div class="plist" id="tmList" style="margin-top:8px"></div></details>
+</div>
+<div class="c alc">
+<div class="tmh"><span class="ico" data-ic="bell"></span><div><b class="zt">التنبيه للصلاة</b><small>صوت واهتزاز وإشعار عند دخول الوقت</small></div></div>
+<label class="swr"><span>تنبيه الصلوات</span><input type="checkbox" id="alOn" class="sw"></label>
+<label class="swr"><span>إبقاء الشاشة مضاءة أثناء فتح التطبيق</span><input type="checkbox" id="wlOn" class="sw"></label>
+<button class="sh" id="notifBtn" style="width:100%;margin-top:12px" hidden>تفعيل الإشعارات</button>
+<button class="sh gold wide" id="icsAll"><span class="ei" data-ic="cal"></span> إضافة تذكيرات 30 يومًا إلى التقويم</button>
+<div class="pt" id="alNote"></div>
+</div>
+<details class="tset"><summary>طريقة الحساب والمدينة</summary><div class="tsb"><select id="pm" aria-label="طريقة حساب المواقيت">
+<option value="3">رابطة العالم الإسلامي</option>
+<option value="5">الهيئة المصرية العامة للمساحة</option>
+<option value="4">جامعة أم القرى</option>
+<option value="12">اتحاد المنظمات الإسلامية بفرنسا</option>
+</select><select id="city" aria-label="اختيار المدينة"><option value="">أو اختر مدينتك يدويًا</option><option value="21.4225|39.8262|مكة المكرمة|Asia/Riyadh">مكة المكرمة</option><option value="24.4672|39.6112|المدينة المنورة|Asia/Riyadh">المدينة المنورة</option><option value="24.7136|46.6753|الرياض|Asia/Riyadh">الرياض</option><option value="21.4858|39.1925|جدة|Asia/Riyadh">جدة</option><option value="30.0444|31.2357|القاهرة|Africa/Cairo">القاهرة</option><option value="25.2048|55.2708|دبي|Asia/Dubai">دبي</option><option value="29.3759|47.9774|الكويت|Asia/Kuwait">الكويت</option><option value="25.2854|51.531|الدوحة|Asia/Qatar">الدوحة</option><option value="23.588|58.3829|مسقط|Asia/Muscat">مسقط</option><option value="31.9454|35.9284|عمّان|Asia/Amman">عمّان</option><option value="31.7683|35.2137|القدس|Asia/Jerusalem">القدس</option><option value="33.3152|44.3661|بغداد|Asia/Baghdad">بغداد</option><option value="33.5138|36.2765|دمشق|Asia/Damascus">دمشق</option><option value="33.8938|35.5018|بيروت|Asia/Beirut">بيروت</option><option value="15.3694|44.191|صنعاء|Asia/Aden">صنعاء</option><option value="15.5007|32.5599|الخرطوم|Africa/Khartoum">الخرطوم</option><option value="36.8065|10.1815|تونس|Africa/Tunis">تونس</option><option value="36.7538|3.0588|الجزائر|Africa/Algiers">الجزائر</option><option value="34.0209|-6.8416|الرباط|Africa/Casablanca">الرباط</option><option value="41.0082|28.9784|إسطنبول|Europe/Istanbul">إسطنبول</option></select></div></details>
+</main>
+<main id="v5" class="wrap" hidden>
+<div class="c">
+<div class="src">🕋 اتجاه القبلة</div>
+<div class="compass"><div class="cdial"></div><div class="needle" id="needle"><svg viewBox="0 0 40 120" width="40" height="120" aria-hidden="true"><path d="M20 4 34 60H6z" fill="var(--au)"/><path d="M20 116 6 60h28z" fill="var(--bd)"/><circle cx="20" cy="60" r="5" fill="var(--g2)"/></svg></div></div>
+<div class="pt" id="qd">اضغط لتحديد اتجاه القبلة</div>
+<button class="sh" id="qbtn">🧭 تفعيل البوصلة</button>
+</div>
+</main>
+<main id="v6" class="wrap" hidden>
+<div class="c cmp" id="lPl">
+<div class="lhd"><div class="lnow" id="lNow">اختر سورة واضغط ▶ للاستماع</div><button class="sh lx" id="lMode" aria-label="وضع التشغيل">⚙️</button><button class="sh lx" id="lExp" aria-label="توسيع المشغّل">⌄</button></div>
+<div class="lsub" id="lSub">🎧 مذكر</div>
+<input type="range" id="lSeek" min="0" max="1000" value="0" aria-label="التقدم">
+<div class="lbuf"><i id="lBufI"></i></div>
+<div class="lt"><span id="lT1">0:00</span><span id="lAyl"></span><span id="lT2">−0:00</span></div>
+<div class="lsp"><i id="lSP"></i></div>
+<div class="lctl"><button class="sh" id="lPrevS" aria-label="السابقة">⏭</button><button class="sh" id="lBack" aria-label="رجوع">⏩</button><button class="sh" id="lPlay" aria-label="تشغيل">▶</button><button class="sh" id="lFwd" aria-label="تقدّم">⏪</button><button class="sh" id="lNextS" aria-label="التالية">⏮</button></div>
+<div class="lctl lopt2" style="margin-top:12px"><button class="sh" id="lSpd">1×</button><button class="sh" id="lDl">⬇️ تنزيل السورة</button><button class="sh" id="lDlA" hidden>⬇️ الآية</button></div>
+</div>
+<div class="seg" id="mSeg"><button data-p="list" class="on">📖 المصحف</button><button data-p="rec">🎙 القرّاء</button><button data-p="vault">⬇️ الخزينة</button></div>
+<div id="p_list">
+<div id="mList">
+<button class="sh" id="mLp" style="width:100%;margin-bottom:8px" hidden></button>
+<button class="sh" id="mLr" style="width:100%;margin-bottom:8px" hidden></button>
+<button class="sh" id="mBm" style="width:100%;margin-bottom:8px" hidden></button>
+<input class="s" id="mq" type="search" placeholder="ابحث عن سورة، أو اكتب نصًا للبحث في الآيات">
+<button class="sh" id="mSearchBtn" style="width:100%;margin:8px 0">🔍 ابحث في نص الآيات</button>
+<div class="plist" id="mSurList"></div>
+</div>
+<div id="mRead" hidden>
+<div class="rh"><button class="ib2" id="mBack" aria-label="رجوع لقائمة السور" data-ic="back"></button><div class="rht"><h2 id="mReadTitle"></h2><div id="mReadSub" class="src"></div></div><span></span></div>
+<div class="chips">
+<button class="chip pri" id="mPlayS">🎧 استمع مع التظليل</button>
+<button class="chip" id="mDl">⬇️ تنزيل</button>
+<button class="chip" id="mFollow">📍 تتبّع</button>
+<button class="chip" id="mDone">✓ أتممتُ القراءة</button>
+<button class="chip" id="mRdAuto">📖 التسجيل التلقائي</button>
+</div>
+<div class="c stopb" id="mStop" hidden><span></span><div class="row" style="margin-top:8px;gap:8px"><button class="sh" id="mStopGo" style="flex:1">▶ تابع من هنا</button><button class="sh" id="mStopX" style="flex:1">✕ إزالة العلامة</button></div></div>
+<div class="pt" id="mRdInfo" style="margin:0 2px 6px;font-size:13px"></div>
+<details class="hint"><summary>طريقة الاستخدام</summary><div class="pt">اضغط رقم الآية (أو أي آية أثناء التشغيل) لينتقل الصوت إليها • اضغط الآية وهي متوقفة لحفظ علامة</div></details>
+<div id="mReadBody" class="c mushaf"></div>
+<div class="rnav"><button class="sh" id="mPrev"><span class="ei" data-ic="back"></span> السورة السابقة</button><button class="sh" id="mNext">السورة التالية <span class="ei" data-ic="left"></span></button></div>
+</div>
+</div>
+<div id="p_rec" hidden>
+<div class="c rcb" id="lRc" role="button" tabindex="0" aria-label="تغيير القارئ"><span class="av" id="lAv">🎙</span><span class="rn"><b id="lRn"></b><small id="lRs"></small></span><span class="chg">تغيير ▾</span></div>
+<select id="lq" aria-label="المصدر والجودة"></select>
+<div class="pt" id="lInfo"></div>
+<button class="sh" id="lMode2" style="width:100%;margin:8px 0">⚙️ وضع التشغيل: المصحف، آية بآية / متصل، التكرار، المؤقّت</button>
+<label class="lck2"><input type="checkbox" id="lAuto"> تشغيل السورة التالية تلقائيًا</label>
+<div id="lMh" hidden></div>
+</div>
+<div id="p_vault" hidden>
+<div class="c"><div class="pt" id="vSum"></div><div class="row"><button class="sh" id="lDel">🗑 حذف كل التنزيلات</button></div></div>
+<div id="vList"></div>
+</div>
+</main>
+<main id="v7" class="wrap" hidden>
+<div class="plist">
+<div class="sl" data-go="5"><span class="ico" data-ic="compass"></span><span>القبلة<br><span class="src">تحديد اتجاه الكعبة من موقعك</span></span></div>
+<div class="sl" data-go="2"><span class="ico" data-ic="dot"></span><span>المسبحة<br><span class="src">تسبيح إلكتروني بأهداف قابلة للتخصيص</span></span></div>
+<div class="sl" data-go="8"><span class="ico" data-ic="cal"></span><span>التقويم والزكاة<br><span class="src">التاريخ الهجري، أيام الصيام المستحبة، وحاسبة الزكاة</span></span></div>
+<div class="sl" data-go="3"><span class="ico" data-ic="chart"></span><span>إنجازي<br><span class="src">إحصائيات الأذكار والتسبيح والصلوات وختمة القرآن</span></span></div>
+<div class="sl" data-dlg="src"><span class="ico" data-ic="info"></span><span>المصادر والاعتماد<br><span class="src">المراجع التي يستند إليها التطبيق</span></span></div>
+<div class="sl" data-dlg="prv"><span class="ico" data-ic="lock"></span><span>سياسة الخصوصية<br><span class="src">كيف نتعامل مع موقعك وبياناتك</span></span></div>
+</div>
+</main>
+<main id="v8" class="wrap" hidden>
+<div class="hijc"><small>اليوم</small><div class="hd" id="hijToday">—</div><div class="hg2" id="hijG"></div><div class="hf" id="hijFast">—</div></div>
+<div class="prl oc" id="hijOcc"></div>
+<div class="pt" style="margin:12px 0 16px">المواعيد محسوبة فلكيًا وقد تختلف يومًا حسب رؤية الهلال</div>
+<div class="c zk">
+<div class="tmh"><span class="ico" data-ic="calc"></span><div><b class="zt">حاسبة الزكاة</b><small>تقدير سريع لزكاة المال والذهب</small></div></div>
+<label class="fl" for="zn">النصاب</label><select id="zn"><option value="85">اعتماد نصاب الذهب (85غ)</option><option value="595">اعتماد نصاب الفضة (595غ)</option></select>
+<label class="fl" for="zp">سعر الجرام حاليًا</label><input class="s" id="zp" type="number" inputmode="decimal" placeholder="سعر جرام الذهب أو الفضة">
+<label class="fl" for="zw">إجمالي المال</label><input class="s" id="zw" type="number" inputmode="decimal" placeholder="أموالك وذهبك الزكوي (مرّ عليه حول)">
+<button class="sh gold wide" id="zBtn">احسب الزكاة</button>
+<div class="zout" id="zOut"></div>
+<div class="pt">حاسبة تقريبية للمساعدة، والأدق سؤال أهل العلم لحالتك الخاصة</div>
+</div>
+</main>
+<main id="v9" class="wrap">
+<section class="hero" id="hero" data-sky="noon"><div class="hin">
+<div class="hgr" id="hGreet"></div>
+<button class="loc" id="hLoc" aria-label="تغيير الموقع"><span data-ic="pin"></span><b id="hLocN">حدّد موقعك</b></button>
+</div></section>
+<div class="hm">
+<div class="rc noloc" id="hmPray" role="button" tabindex="0" aria-label="مواقيت الصلاة">
+<div class="ring"><svg viewBox="0 0 220 220" aria-hidden="true"><circle class="tr" cx="110" cy="110" r="96"/><circle id="rArc" cx="110" cy="110" r="96"/></svg>
+<div class="rin"><div class="rl">الصلاة القادمة</div><div class="rn2" id="rName">—</div><div class="rcd2" id="rCd">--:--:--</div><div class="rchip" id="rAt"></div></div></div>
+<div class="rdt" id="rDate"></div>
+<div class="rnl" id="rNoLoc"><p>حدّد موقعك لتظهر مواقيت الصلاة الدقيقة</p><div class="bt"><button class="sh gold" id="hGeo">تحديد موقعي</button><button class="sh" id="hCity">اختيار مدينة</button></div></div>
+</div>
+<div class="pstrip" id="pstrip"></div>
+<button class="sh wide" id="hmResume" hidden></button>
+<button class="sh wide" id="hmRead" hidden></button>
+<div class="occ" id="hOcc" hidden></div>
+<div class="grid" id="homeMenu"></div>
+</div>
+</main>
+<div id="pn"><div class="c">
+<div class="row"><b>الاهتزاز عند كل ضغطة</b><button class="sh" id="sv"></button></div>
+<div class="row"><b>الصوت</b><button class="sh" id="ss"></button></div>
+<div class="row"><b>حجم الخط</b><span class="bt"><button class="sh" data-z="20">صغير</button><button class="sh" data-z="26">وسط</button><button class="sh" data-z="32">كبير</button></span></div>
+<div class="row"><b>المصحف دون إنترنت</b><button class="sh" id="qdl">📥 تنزيل</button></div>
+<div class="row"><button class="sh" id="px">تم</button></div>
+</div></div>
+<div id="dg"><div class="c"><h3 id="dgT"></h3><div id="dgB"></div><div class="row"><button class="sh" id="dgX">إغلاق</button></div></div></div>
+<nav class="b"><button id="n9" class="on"><i data-ic="home"></i><span>الرئيسية</span></button><button id="n4"><i data-ic="clock"></i><span>المواقيت</span></button><button id="n1"><i data-ic="beads"></i><span>الأذكار</span></button><button id="n6"><i data-ic="quran"></i><span>المصحف</span></button><button id="n7"><i data-ic="more"></i><span>المزيد</span></button></nav>
+<div id="ts"></div>
+<div id="instBar"><span id="instMsg"></span><button id="instBtn" style="display:none">تثبيت</button><button id="instX" aria-label="إغلاق">✕</button></div>
+<script>addEventListener('error',function(e){var d=document.createElement('div');d.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99;background:#b00020;color:#fff;padding:8px 12px;font:12px/1.5 sans-serif;direction:ltr;text-align:left';d.textContent='JS error: '+(e.message||'')+' ('+String(e.filename||'').split('/').pop()+':'+e.lineno+')';document.body.appendChild(d)});</script>
+<script src="app.js?v=17"></script>
+</body>
+</html>
